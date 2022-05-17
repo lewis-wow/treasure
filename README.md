@@ -1,6 +1,11 @@
 # Tresr
 Store your treasure - localStorage, sessionStorage
 
+## install
+```bash
+    npm i tresr
+```
+
 ## Simple manipulation with localStorage and sessionStorage
 
 Manipulate as with native object
