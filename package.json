@@ -1,0 +1,26 @@
+{
+    "name": "treasure",
+    "version": "0.0.1",
+    "description": "Store your treasure, localStorage and sessionStorage manipulator",
+    "main": "src/treasure.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lewis-wow/treasure.git"
+    },
+    "keywords": [
+        "treasure",
+        "localStorage",
+        "sessionStorage",
+        "storage",
+        "object"
+    ],
+    "author": "Ludvik Prokopec",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lewis-wow/treasure/issues"
+    },
+    "homepage": "https://github.com/lewis-wow/treasure#readme"
+}
