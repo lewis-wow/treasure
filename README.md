@@ -41,3 +41,8 @@ Manipulate as with native object
     const ls = defineStorage(localStorage);
     const ss = defineStorage(sessionStorage);
 ```
+
+```js
+    // in browser
+    const { ls, ss } = Tresr;
+```

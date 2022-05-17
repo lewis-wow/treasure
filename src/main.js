@@ -38,8 +38,14 @@
         };
     };
 
-    const defineStorage = (storage) => new Proxy(() => storage, createConfig(storage));
-    const wdefined = typeof window !== 'undefined';
+    const defineStorage = (storage) => {
+        if (!storage) throw new TypeError('Storage is not defined');
+        if (!storage.getItem || !storage.setItem || !storage.removeItem) throw new TypeError('Storage is not supported');
+
+        return new Proxy(() => storage, createConfig(storage));
+    }
+
+    const wdefined = typeof window !== 'undefined' || self instanceof Window;
 
     return {
         defineStorage,
