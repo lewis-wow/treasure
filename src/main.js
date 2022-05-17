@@ -45,7 +45,7 @@
         return new Proxy(() => storage, createConfig(storage));
     }
 
-    const wdefined = typeof window !== 'undefined' || self instanceof Window;
+    const wdefined = typeof window !== 'undefined';
 
     return {
         defineStorage,
