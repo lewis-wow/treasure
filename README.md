@@ -1,11 +1,11 @@
-# treasure
+# Tresr
 Store your treasure - localStorage, sessionStorage
 
 ## Simple manipulation with localStorage and sessionStorage
 
 Manipulate as with native object
 ```js
-    import { ls, ss } from 'treasure';
+    import { ls, ss } from 'tresr';
 
     ls.name = 'John'; // new item in session storage with key "name" and value "John"
     console.log(ls.name); // get the item

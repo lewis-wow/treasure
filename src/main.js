@@ -31,6 +31,10 @@ const createConfig = (storage) => {
     };
 };
 
+if (typeof window === 'undefined') {
+    throw new Error('Treasure requires a window object');
+}
+
 const ls = new Proxy(() => window.localStorage, createConfig(window.localStorage));
 const ss = new Proxy(() => window.sessionStorage, createConfig(window.sessionStorage));
 
