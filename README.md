@@ -1,7 +1,9 @@
 # Tresr
+
 Store your treasure - localStorage, sessionStorage
 
 ## install
+
 ```bash
     npm i tresr
 ```
@@ -9,8 +11,10 @@ Store your treasure - localStorage, sessionStorage
 ## Simple manipulation with localStorage and sessionStorage
 
 Manipulate as with native object
+
 ```js
-    import { ls, ss, defineStorage } from 'tresr';
+    import Tresr from 'tresr';
+    const { ls, ss, defineStorage } = Tresr;
 
     ls.name = 'John'; // new item in session storage with key "name" and value "John"
     console.log(ls.name); // get the item
@@ -39,7 +43,8 @@ Manipulate as with native object
 ```
 
 ```js
-    import { defineStorage } from 'tresr';
+    import Tresr from 'tresr';
+    const { defineStorage } = Tresr;
 
     // in node.js with localStorage/sessionStorage alternative with same api
     const ls = defineStorage(localStorage);
@@ -49,4 +54,14 @@ Manipulate as with native object
 ```js
     // in browser
     const { ls, ss } = Tresr;
+```
+
+```js
+    // node ES6
+    import Tresr from 'tresr';
+
+    // node ESmodules
+    const { ls, ss, defineStorage } = require('tresr');
+
+    const Tresr = require('tresr');
 ```
