@@ -10,7 +10,7 @@ Store your treasure - localStorage, sessionStorage
 
 Manipulate as with native object
 ```js
-    import { ls, ss } from 'tresr';
+    import { ls, ss, defineStorage } from 'tresr';
 
     ls.name = 'John'; // new item in session storage with key "name" and value "John"
     console.log(ls.name); // get the item
@@ -32,4 +32,12 @@ Manipulate as with native object
     }
 
     ls().clear(); // access the native api
+```
+
+```js
+    import { defineStorage } from 'tresr';
+
+    // in node.js with localStorage/sessionStorage alternative with same api
+    const ls = defineStorage(localStorage);
+    const ss = defineStorage(sessionStorage);
 ```
