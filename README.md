@@ -31,6 +31,10 @@ Manipulate as with native object
         console.log(ls.name);
     }
 
+    // deep object
+    ls["my.deep.object"] = "deeeeeeeep";
+    console.log(ls["my.deep.object"]);
+
     ls().clear(); // access the native api
 ```
 
