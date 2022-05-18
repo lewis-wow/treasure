@@ -16,7 +16,7 @@ Manipulate as with native object
     import Tresr from 'tresr';
     const { ls, ss, defineStorage } = Tresr;
 
-    ls.name = 'John'; // new item in session storage with key "name" and value "John"
+    ls.name = 'John'; // new item in localStorage with key "name" and value "John"
     console.log(ls.name); // get the item
     delete ls.name // remove the item
 
