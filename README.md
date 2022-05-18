@@ -79,22 +79,22 @@ Manipulate as with native object
     // manipulate with localStorage/sessionStorage as with native Javascript object
 
     ls.name = 'John';
-    // equal to 
+    // equals to 
     // localStorage.setItem('name', 'John');
 
     console.log(ls.name);
-    // equal to 
+    // equals to 
     // console.log(localStorage.getItem('name'));
 
     delete ls.name;
-    // equal to 
+    // equals to 
     // localStorage.removeItem('name', 'John');
 
     'name' in ls;
-    // equal to 
+    // equals to 
     // localStorage.getItem('name') !== null;
 
     ls().clear();
-    // equal to 
+    // equals to 
     // localStorage.clear();
 ```

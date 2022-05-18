@@ -1,6 +1,6 @@
 {
     "name": "tresr",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Store your treasure, localStorage and sessionStorage manipulator",
     "main": "src/main.js",
     "scripts": {
