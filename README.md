@@ -69,3 +69,32 @@ Manipulate as with native object
 
     const Tresr = require('tresr');
 ```
+
+### Tresr vs native
+
+```js
+    import Tresr from 'tresr';
+    const { ls } = Tresr;
+    
+    // manipulate with localStorage/sessionStorage as with native Javascript object
+
+    ls.name = 'John';
+    // equal to 
+    // localStorage.setItem('name', 'John');
+
+    console.log(ls.name);
+    // equal to 
+    // console.log(localStorage.getItem('name'));
+
+    delete ls.name;
+    // equal to 
+    // localStorage.removeItem('name', 'John');
+
+    'name' in ls;
+    // equal to 
+    // localStorage.getItem('name') !== null;
+
+    ls().clear();
+    // equal to 
+    // localStorage.clear();
+```
