@@ -5,7 +5,11 @@ Store your treasure - localStorage, sessionStorage
 ## install
 
 ```bash
-    npm i tresr
+npm i tresr
+```
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/tresr"></script>
 ```
 
 ## Simple manipulation with localStorage and sessionStorage
