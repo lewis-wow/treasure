@@ -5,9 +5,34 @@
 }(this, function () {
     'use strict';
 
+    const isTrivial = (value) => !((typeof value === 'object' && value !== null) || Array.isArray(value));
+
+    const proxify = (storage, shalow, key, curr) => {
+        if (isTrivial(curr)) {
+            return curr;
+        }
+
+        return new Proxy(curr, {
+            get(target, prop) {
+                return proxify(storage, shalow, key, target[prop]);
+            },
+
+            set(target, prop, value) {
+                target[prop] = value;
+                storage.setItem(key, JSON.stringify(shalow));
+                return true;
+            }
+        });
+    }
+
     const createConfig = (storage) => {
         return {
             set(target, key, value) {
+                if (!isTrivial(value)) {
+                    storage.setItem(key, JSON.stringify(value));
+                    return true;
+                }
+
                 storage.setItem(key, value);
                 return true;
             },
@@ -16,7 +41,14 @@
                 return true;
             },
             get(target, key) {
-                return storage.getItem(key);
+                const item = storage.getItem(key);
+
+                try {
+                    const shalowObject = JSON.parse(item);
+                    return proxify(storage, shalowObject, key, shalowObject);
+                } catch (e) {
+                    return item;
+                }
             },
             has(target, key) {
                 return storage.getItem(key) !== null;

@@ -14,7 +14,7 @@ npm i tresr
 
 ## Simple manipulation with localStorage and sessionStorage
 
-Manipulate as with native object
+Manipulate as with native Javascript object (leave the hard manipulation on us)
 
 ```js
     import Tresr from 'tresr';
@@ -39,9 +39,22 @@ Manipulate as with native object
         console.log(ls.name);
     }
 
-    // deep object
-    ls["my.deep.object"] = "deeeeeeeep";
-    console.log(ls["my.deep.object"]);
+    // deep object - that's the right magic
+    // das native object - auto localStorage saves on edit
+    ls.deep = {
+        a: {
+            b: {
+                c: 1
+            }
+        }
+    };
+
+    console.log(ls.deep.a.b.c);
+    ls.deep.a.b.c = 5;
+    ls.deep.a.b.c++;
+    ls.deep.a.b.c--;
+    ls.deep.a.b.c += 5;
+    Object.assign(ls.deep, { anotherTree: 3 }); // auto update in localStorage!
 
     ls().clear(); // access the native api
 ```
@@ -88,7 +101,7 @@ Manipulate as with native object
 
     delete ls.name;
     // equals to 
-    // localStorage.removeItem('name', 'John');
+    // localStorage.removeItem('name');
 
     'name' in ls;
     // equals to 
