@@ -112,7 +112,7 @@ Manipulate as with native Javascript object (leave the hard manipulation on us)
     // localStorage.clear();
 ```
 
-## If you want to use this proxy, but your object doesn't have localStorage like api
+### If you want to use this proxy, but your object doesn't have localStorage like api
 
 ```js
     import Tresr from 'tresr';
@@ -132,4 +132,22 @@ Manipulate as with native Javascript object (leave the hard manipulation on us)
     });
 
     myManip.a = 3; // works!
+```
+
+### Get immutable data
+
+```js
+    import Tresr from 'tresr';
+    const { ls, immutable } = Tresr;
+
+    ls.deep = {
+        a: {
+            b: 1
+        }
+    };
+
+    const deepA = immutable(ls.deep); // immutably get the ls.deep prop
+    deepA.a.b++; // won't change the localStorage
+
+    ls.deep = deepA; // unless you force the change
 ```

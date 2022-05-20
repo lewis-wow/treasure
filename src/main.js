@@ -16,11 +16,24 @@
             get(target, prop) {
                 return proxify(storage, shalow, key, target[prop]);
             },
-
             set(target, prop, value) {
                 target[prop] = value;
                 storage.setItem(key, JSON.stringify(shalow));
                 return true;
+            },
+            deleteProperty(target, prop) {
+                delete target[prop];
+                storage.setItem(key, JSON.stringify(shalow));
+                return true;
+            },
+            has(target, prop) {
+                return prop in target;
+            },
+            ownKeys(target) {
+                return Object.keys(target);
+            },
+            getOwnPropertyDescriptor(target, prop) {
+                return Object.getOwnPropertyDescriptor(target, prop);
             }
         });
     }
@@ -79,8 +92,19 @@
 
     const wdefined = typeof window !== 'undefined';
 
+    const immutable = (obj) => {
+        if (isTrivial(obj)) return obj;
+
+        const res = {};
+        for (const [key, value] of Object.entries(obj)) {
+            res[key] = isTrivial(value) ? value : immutable(value);
+        }
+        return res;
+    };
+
     return {
         defineStorage,
+        immutable,
         ls: wdefined ? defineStorage(window.localStorage) : undefined,
         ss: wdefined ? defineStorage(window.sessionStorage) : undefined
     };
