@@ -111,3 +111,25 @@ Manipulate as with native Javascript object (leave the hard manipulation on us)
     // equals to 
     // localStorage.clear();
 ```
+
+## If you want to use this proxy, but your object doesn't have localStorage like api
+
+```js
+    import Tresr from 'tresr';
+    const { defineStorage } = Tresr;
+
+    // define custom non-localStorage like object manipulation
+    const myManip = defineStorage({
+        setItem(key, value) {
+            yourObject.set(key, value);
+        },
+        getItem(key) {
+            yourObject.get(key);
+        },
+        removeItem(key) {
+            yourObject.remove(key);
+        }
+    });
+
+    myManip.a = 3; // works!
+```
