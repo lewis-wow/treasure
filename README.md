@@ -17,34 +17,34 @@ npm i tresr
 Manipulate as with native Javascript object (leave the hard manipulation on us)
 
 ```js
-    import Tresr from 'tresr';
-    const { ls, ss, defineStorage } = Tresr;
+    import { LS } from 'tresr';
 
-    ls.name = 'John'; // new item in localStorage with key "name" and value "John"
-    console.log(ls.name); // get the item
-    delete ls.name // remove the item
+    LS.name = 'John'; // new item in localStorage with key "name" and value "John"
+    console.log(LS.name); // get the item
+    delete LS.name // remove the item
 
     // iterate over items
-    ls.baz = 'bar';
-    for(const key in ls) {
-        console.log(key, ls[key]);
+    LS.baz = 'bar';
+    for(const key in LS) {
+        console.log(key, LS[key]);
     }
 
-    for (const [key, value] of Object.entries(ls)) {
+    for (const [key, value] of Object.entries(LS)) {
         console.log(key, value);
     }
 
     // is in localStorage?
-    if('name' in ls) {
-        console.log(ls.name);
+    if('name' in LS) {
+        console.log(LS.name);
     }
 
     // deep object - that's the right magic
     // das native object - auto localStorage saves on edit
-    ls.deep = {
+    LS.deep = {
         a: {
             b: {
-                c: 1
+                c: 1,
+                stringified: '{ a: 1 }' //type safe, keep string
             }
         }
     };
@@ -59,95 +59,30 @@ Manipulate as with native Javascript object (leave the hard manipulation on us)
     ls().clear(); // access the native api
 ```
 
-```js
-    import Tresr from 'tresr';
-    const { defineStorage } = Tresr;
-
-    // in node.js with localStorage/sessionStorage alternative with same api
-    const ls = defineStorage(localStorage);
-    const ss = defineStorage(sessionStorage);
-```
-
-```js
-    // in browser
-    const { ls, ss } = Tresr;
-```
-
-```js
-    // node ES6
-    import Tresr from 'tresr';
-
-    // node ESmodules
-    const { ls, ss, defineStorage } = require('tresr');
-
-    const Tresr = require('tresr');
-```
-
 ### Tresr vs native
 
 ```js
-    import Tresr from 'tresr';
-    const { ls } = Tresr;
+    import { LS } from 'tresr';
     
     // manipulate with localStorage/sessionStorage as with native Javascript object
 
-    ls.name = 'John';
+    LS.name = 'John';
     // equals to 
     // localStorage.setItem('name', 'John');
 
-    console.log(ls.name);
+    console.log(LS.name);
     // equals to 
     // console.log(localStorage.getItem('name'));
 
-    delete ls.name;
+    delete LS.name;
     // equals to 
     // localStorage.removeItem('name');
 
-    'name' in ls;
+    'name' in LS;
     // equals to 
     // localStorage.getItem('name') !== null;
 
-    ls().clear();
+    LS().clear();
     // equals to 
     // localStorage.clear();
-```
-
-### If you want to use this proxy, but your object doesn't have localStorage like api
-
-```js
-    import Tresr from 'tresr';
-    const { defineStorage } = Tresr;
-
-    // define custom non-localStorage like object manipulation
-    const myManip = defineStorage({
-        setItem(key, value) {
-            yourObject.set(key, value);
-        },
-        getItem(key) {
-            yourObject.get(key);
-        },
-        removeItem(key) {
-            yourObject.remove(key);
-        }
-    });
-
-    myManip.a = 3; // works!
-```
-
-### Get immutable data
-
-```js
-    import Tresr from 'tresr';
-    const { ls, immutable } = Tresr;
-
-    ls.deep = {
-        a: {
-            b: 1
-        }
-    };
-
-    const deepA = immutable(ls.deep); // immutably get the ls.deep prop
-    deepA.a.b++; // won't change the localStorage
-
-    ls.deep = deepA; // unless you force the change
 ```
