@@ -1,6 +1,6 @@
 # Tresr
 
-Store your treasure - localStorage, sessionStorage
+LocalStorage as plain object
 
 ## install
 
@@ -8,81 +8,77 @@ Store your treasure - localStorage, sessionStorage
 npm i tresr
 ```
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/tresr"></script>
-```
-
 ## Simple manipulation with localStorage and sessionStorage
 
 Manipulate as with native Javascript object (leave the hard manipulation on us)
 
-```js
-    import { LS } from 'tresr';
+```ts
+  import ls from 'tresr';
 
-    LS.name = 'John'; // new item in localStorage with key "name" and value "John"
-    console.log(LS.name); // get the item
-    delete LS.name // remove the item
+  ls.name = 'John'; // new item in localStorage with key "name" and value "John"
+  console.log(ls.name); // get the item
+  delete ls.name // remove the item
 
-    // iterate over items
-    LS.baz = 'bar';
-    for(const key in LS) {
-        console.log(key, LS[key]);
-    }
+  // iterate over items
+  ls.baz = 'bar';
+  for(const key in ls) {
+      console.log(key, ls[key]);
+  }
 
-    for (const [key, value] of Object.entries(LS)) {
-        console.log(key, value);
-    }
+  for (const [key, value] of Object.entries(ls)) {
+      console.log(key, value);
+  }
 
-    // is in localStorage?
-    if('name' in LS) {
-        console.log(LS.name);
-    }
+  // is in localStorage?
+  if('name' in ls) {
+      console.log(ls.name);
+  }
 
-    // deep object - that's the right magic
-    // das native object - auto localStorage saves on edit
-    LS.deep = {
-        a: {
-            b: {
-                c: 1,
-                stringified: '{ a: 1 }' //type safe, keep string
-            }
-        }
-    };
+  // deep object - that's the right magic
+  // das native object - auto localStorage saves on edit
+  ls.deep = {
+      a: {
+          b: {
+              c: 1,
+              stringified: '{ a: 1 }' //type safe, keep string
+          }
+      }
+  };
 
-    console.log(ls.deep.a.b.c);
-    ls.deep.a.b.c = 5;
-    ls.deep.a.b.c++;
-    ls.deep.a.b.c--;
-    ls.deep.a.b.c += 5;
-    Object.assign(ls.deep, { anotherTree: 3 }); // auto update in localStorage!
+  console.log(ls.deep.a.b.c);
+  ls.deep.a.b.c = 5;
+  ls.deep.a.b.c++;
+  ls.deep.a.b.c--;
+  ls.deep.a.b.c += 5;
+  Object.assign(ls.deep, { anotherTree: 3 }); // auto update in localStorage!
 
-    ls().clear(); // access the native api
+  ls().clear(); // access the native api
 ```
 
 ### Tresr vs native
 
-```js
-    import { LS } from 'tresr';
-    
-    // manipulate with localStorage/sessionStorage as with native Javascript object
+```ts
+  import ls from 'tresr';
 
-    LS.name = 'John';
-    // equals to 
-    // localStorage.setItem('name', 'John');
+  // manipulate with localStorage/sessionStorage as with native Javascript object
 
-    console.log(LS.name);
-    // equals to 
-    // console.log(localStorage.getItem('name'));
+  ls.name = 'John';
+  // equals to
+  // localStorage.setItem('name', 'John');
 
-    delete LS.name;
-    // equals to 
-    // localStorage.removeItem('name');
+  console.log(ls.name);
+  // equals to
+  // console.log(localStorage.getItem('name'));
 
-    'name' in LS;
-    // equals to 
-    // localStorage.getItem('name') !== null;
+  delete ls.name;
+  // equals to
+  // localStorage.removeItem('name');
 
-    LS().clear();
-    // equals to 
-    // localStorage.clear();
+  'name' in ls;
+  // equals to
+  // localStorage.getItem('name') !== null;
+
+  ls().clear();
+  // equals to
+  // localStorage.clear();
 ```

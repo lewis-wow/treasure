@@ -1,25 +1,33 @@
 {
-    "name": "tresr",
-    "version": "0.2.3",
-    "description": "Store your treasure, localStorage and sessionStorage manipulator",
-    "main": "src/main.js",
-    "module": "mjs",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/lewis-wow/treasure.git"
-    },
-    "keywords": [
-        "treasure",
-        "localStorage",
-        "sessionStorage",
-        "storage",
-        "object",
-        "tresr"
-    ],
-    "author": "Ludvik Prokopec",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/lewis-wow/treasure/issues"
-    },
-    "homepage": "https://github.com/lewis-wow/treasure#readme"
+	"name": "tresr",
+	"version": "0.2.3",
+	"description": "Store your treasure, localStorage and sessionStorage manipulator",
+	"main": "src/main.ts",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lewis-wow/treasure.git"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.json",
+		"dev": "vite"
+	},
+	"keywords": [
+		"treasure",
+		"localStorage",
+		"sessionStorage",
+		"storage",
+		"object",
+		"tresr"
+	],
+	"author": "Ludvik Prokopec",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/lewis-wow/treasure/issues"
+	},
+	"homepage": "https://github.com/lewis-wow/treasure#readme",
+	"devDependencies": {
+		"typescript": "^4.9.5",
+		"vite": "^4.1.0"
+	}
 }
